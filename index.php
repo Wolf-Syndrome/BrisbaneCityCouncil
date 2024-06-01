@@ -29,10 +29,15 @@
             die('Error parsing XML');
         }
         
-        // Now you can access the XML data
-        // For example, if the XML structure is like <data><item>...</item></data>
-        // You can iterate over the items like this:
-        print_r($xml);
+        // filter through, location, title, event type, id, 
+        // list of each entry
+        $searchFor = "Brisbane";
+        $entries = $xml->entry;
+        for ($i = 0; $i < count($entries); $i++) {
+            if (str_contains($entries[$i]->title, $searchFor)) {
+                print_r($entries[$i]);
+            }
+        }
     ?>
 
     <h1>Test</h1>
