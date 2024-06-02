@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema BrisbaneEvents
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema BrisbaneEvents
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `BrisbaneEvents` DEFAULT CHARACTER SET utf8 ;
+USE `BrisbaneEvents` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Users`
+-- Table `BrisbaneEvents`.`Users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Users` ;
+DROP TABLE IF EXISTS `BrisbaneEvents`.`Users` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+CREATE TABLE IF NOT EXISTS `BrisbaneEvents`.`Users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -31,25 +31,24 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
   `phone_number` VARCHAR(45) NULL,
   `contact_method` INT NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE)
-ENGINE = InnoDB;
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC)
+);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`UserEvents`
+-- Table `BrisbaneEvents`.`UserEvents`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`UserEvents` ;
+DROP TABLE IF EXISTS `BrisbaneEvents`.`UserEvents` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`UserEvents` (
+CREATE TABLE IF NOT EXISTS `BrisbaneEvents`.`UserEvents` (
   `user_id` INT NOT NULL,
   `event_id` INT NOT NULL,
   PRIMARY KEY (`user_id`, `event_id`),
   CONSTRAINT `UserID_FK`
     FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`Users` (`user_id`)
+    REFERENCES `BrisbaneEvents`.`Users` (`user_id`)
     ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -57,26 +56,26 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`Users`
+-- Data for table `BrisbaneEvents`.`Users`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `mydb`;
-INSERT INTO `mydb`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (1, 'Stephen', 'Three', '1', '1@gmail.com', NULL, 1);
-INSERT INTO `mydb`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (2, 'Jermeny', 'Four', '2', '2@gmail.com', '0412234567', 3);
-INSERT INTO `mydb`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (3, 'Greg', 'Doe', '3', NULL, '0412345678', 2);
+USE `BrisbaneEvents`;
+INSERT INTO `BrisbaneEvents`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (1, 'Stephen', 'Three', '1', '1@gmail.com', NULL, 1);
+INSERT INTO `BrisbaneEvents`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (2, 'Jermeny', 'Four', '2', '2@gmail.com', '0412234567', 3);
+INSERT INTO `BrisbaneEvents`.`Users` (`user_id`, `first_name`, `last_name`, `password`, `email`, `phone_number`, `contact_method`) VALUES (3, 'Greg', 'Doe', '3', NULL, '0412345678', 2);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`UserEvents`
+-- Data for table `BrisbaneEvents`.`UserEvents`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `mydb`;
-INSERT INTO `mydb`.`UserEvents` (`user_id`, `event_id`) VALUES (1, 171552516);
-INSERT INTO `mydb`.`UserEvents` (`user_id`, `event_id`) VALUES (1, 17353949);
-INSERT INTO `mydb`.`UserEvents` (`user_id`, `event_id`) VALUES (2, 171552516);
-INSERT INTO `mydb`.`UserEvents` (`user_id`, `event_id`) VALUES (2, 17155218);
+USE `BrisbaneEvents`;
+INSERT INTO `BrisbaneEvents`.`UserEvents` (`user_id`, `event_id`) VALUES (1, 171552516);
+INSERT INTO `BrisbaneEvents`.`UserEvents` (`user_id`, `event_id`) VALUES (1, 17353949);
+INSERT INTO `BrisbaneEvents`.`UserEvents` (`user_id`, `event_id`) VALUES (2, 171552516);
+INSERT INTO `BrisbaneEvents`.`UserEvents` (`user_id`, `event_id`) VALUES (2, 17155218);
 
 COMMIT;
 
