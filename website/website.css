@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+}
+
+.side-menu {
+    width: 20%;
+}
+
+.search-results {
+    flex: 1;
+}
