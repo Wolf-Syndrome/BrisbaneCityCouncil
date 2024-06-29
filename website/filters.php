@@ -59,7 +59,6 @@
                         .then(response => response.text())
                         .then(data => {
                             document.getElementById('searchResults').innerHTML = data;
-                            console.log(data);
                         })
                         .catch(error => cosole.error('Error:', error));
                     });
