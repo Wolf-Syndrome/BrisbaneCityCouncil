@@ -2,10 +2,11 @@
 $useAPI = false;
 // Query API
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    session_start();
+    $UserID = $_SESSION["USER"];
     $title = $_POST["title"];
     $suburbs = isset($_POST["suburbs"]) ? $_POST["suburbs"] : [];
     $event_types = isset($_POST["event_types"]) ? $_POST["event_types"] : [];
-
 
     if ($useAPI) {
         $url = 'http://www.trumba.com/calendars/brisbane-city-council.xml';
@@ -33,13 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // filter through, location, title, event type, id, 
     // list of each entry
-    $searchFor = "Brisbane";
     $entries = $xml->entry;
     for ($i = 0; $i < count($entries); $i++) {
         // Checking title
         $entry = $entries[$i];
         if ($title !== "") {
-            if (!str_contains($entry->title, $title)) {
+            if (!str_contains(strtolower($entry->title), strtolower($title))) {
                 continue;
             }
         }
@@ -56,12 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 continue;
             }
         }
-        
 
         print_r($entry);
-
-        if (str_contains($entries[$i]->title, $searchFor)) {
-            print_r($entries[$i]);
-        }
+        $eventID = $entry->id;
+        echo "<br/>";
+        echo "<button onClick=\"subscribeToEvent('$UserID', '$eventID')\">Subscribe</button>";
+        echo "<hr/>";
     }
 }

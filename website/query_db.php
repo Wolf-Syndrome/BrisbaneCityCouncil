@@ -1,5 +1,4 @@
 <?php
-$useAPI = false;
 // Query API
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = $_POST["query"];

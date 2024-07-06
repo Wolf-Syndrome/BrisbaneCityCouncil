@@ -1,6 +1,27 @@
+<?php 
+    session_start();
+    $_SESSION["USER"] = "2";
+?>
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="website.css">
+    <script>
+        function subscribeToEvent(userID, eventID) {
+            var query = `INSERT INTO userevents (user_id, event_id) VALUES ('${userID}', '${eventID}')`;
+            var url = "query_db.php";
+            var formData = new FormData();
+            formData.append("query", query);
+            fetch(url, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('searchResults').innerHTML = data;
+            })
+            .catch(error => cosole.error('Error:', error));
+        }
+    </script>
     <body>
         <h2>ID Form</h2>
         <form action="get_event_by_id.php" method="post">
